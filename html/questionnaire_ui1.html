@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>アンケート作成（ドラッグ＆ドロップ）</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    :root {
+      --primary-color: #00C9A7;
+      --sidebar-bg: #2c3e50;
+      --sidebar-item-hover: #34495e;
+      --preview-bg: #f8f9fa;
+    }
+    body, html {
+      height: 100%;
+      margin: 0;
+    }
+    .sidebar {
+      background: var(--sidebar-bg);
+      color: #fff;
+      width: 260px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .sidebar .nav-tabs {
+      border-bottom: none;
+    }
+    .sidebar .nav-tabs .nav-link {
+      color: #bbb;
+      padding: .75rem 1rem;
+    }
+    .sidebar .nav-tabs .nav-link.active {
+      color: #fff;
+      background: var(--sidebar-item-hover);
+    }
+    .item-list {
+      flex: 1;
+      overflow-y: auto;
+      padding: .5rem;
+    }
+    .item-list .list-group-item {
+      background: transparent;
+      border: none;
+      color: #ddd;
+      cursor: grab;
+    }
+    .item-list .list-group-item:hover {
+      background: var(--sidebar-item-hover);
+      color: #fff;
+    }
+    .main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .main-header {
+      padding: .75rem 1rem;
+      border-bottom: 1px solid #dee2e6;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #fff;
+    }
+    .main-header .btn-edit {
+      background: var(--primary-color);
+      color: #fff;
+    }
+    .preview-tabs {
+      background: #fff;
+      padding-left: 1rem;
+    }
+    .preview-area {
+      flex: 1;
+      background: var(--preview-bg);
+      overflow-y: auto;
+      padding: 1rem;
+    }
+    .preview-area img.banner {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: .375rem;
+    }
+    .preview-area .survey-title {
+      margin: 1.5rem 0 .5rem;
+      text-align: center;
+      font-size: 1.75rem;
+      font-weight: 500;
+    }
+    .preview-area .survey-desc {
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      color: #555;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="d-flex h-100">
+    <!-- Sidebar -->
+    <aside class="sidebar d-flex flex-column">
+      <!-- タブ -->
+      <ul class="nav nav-tabs flex-column" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">項目</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">カバー</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">デザイン</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">設定</a>
+        </li>
+      </ul>
+      <!-- アイテム一覧 -->
+      <div class="item-list">
+        <div class="list-group list-group-flush">
+          <div class="list-group-item draggable" draggable="true">1行テキスト</div>
+          <div class="list-group-item draggable" draggable="true">複数行テキスト</div>
+          <div class="list-group-item draggable" draggable="true">数値</div>
+          <div class="list-group-item draggable" draggable="true">評価ボタン</div>
+          <div class="list-group-item draggable" draggable="true">尺度ボタン</div>
+          <div class="list-group-item draggable" draggable="true">選択</div>
+          <div class="list-group-item draggable" draggable="true">画像選択</div>
+          <div class="list-group-item draggable" draggable="true">マトリックス選択</div>
+          <div class="list-group-item draggable" draggable="true">ファイルアップロード</div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <div class="main d-flex flex-column">
+      <!-- 上部ヘッダー -->
+      <div class="main-header">
+        <div class="fw-light">draft – 2025年7月14日(月) 07:36</div>
+        <button class="btn btn-sm btn-edit">編集</button>
+      </div>
+
+      <!-- プレビュータブ -->
+      <ul class="nav nav-tabs preview-tabs">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">入力画面</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">完了画面</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">非公開画面</a>
+        </li>
+      </ul>
+
+      <!-- プレビューエリア -->
+      <div class="preview-area">
+        <!-- カバー画像 -->
+        <img class="banner mb-4" src="background_top.jpg" alt="カバー画像">
+
+        <!-- タイトル -->
+        <div class="survey-title">イベント後アンケート</div>
+
+        <!-- 説明文 -->
+        <div class="survey-desc">
+          本日はイベントにご参加いただき誠にありがとうございます。イベントにつきまして、率直なご意見をお聞かせいただければと思います。
+        </div>
+
+        <!-- ドロップエリア（モック） -->
+        <div id="drop-area" class="p-3 border rounded bg-white">
+          <p class="text-secondary">ここにアイテムをドラッグ＆ドロップしてください</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 最低限のドラッグ＆ドロップ動作 -->
+  <script>
+    const draggables = document.querySelectorAll('.draggable');
+    const dropArea = document.getElementById('drop-area');
+
+    draggables.forEach(item => {
+      item.addEventListener('dragstart', e => {
+        e.dataTransfer.setData('text/plain', e.target.textContent);
+      });
+    });
+
+    dropArea.addEventListener('dragover', e => {
+      e.preventDefault();
+      dropArea.classList.add('border-primary');
+    });
+    dropArea.addEventListener('dragleave', () => {
+      dropArea.classList.remove('border-primary');
+    });
+    dropArea.addEventListener('drop', e => {
+      e.preventDefault();
+      dropArea.classList.remove('border-primary');
+      const label = e.dataTransfer.getData('text/plain');
+      const el = document.createElement('div');
+      el.className = 'mb-2 p-2 border rounded';
+      el.textContent = label;
+      dropArea.appendChild(el);
+    });
+  </script>
+</body>
+</html>

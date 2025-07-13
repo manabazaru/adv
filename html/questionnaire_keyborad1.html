@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>アンケート作成（キーボード操作 - Google Form風）</title>
+  <!-- Bootstrap CSS & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet"/>
+  <style>
+    :root {
+      --primary-color: #2C3E50;   /* ここを #2C3E50 に変更 */
+      --bg-color: #f8f9fa;
+      --card-bg: #ffffff;
+    }
+    body { background: var(--bg-color); }
+    .form-header {
+      background: var(--primary-color);
+      color: #fff;
+      padding: 1rem 1.5rem;
+      border-radius: 0.5rem 0.5rem 0 0;
+    }
+    .card-form {
+      border: none;
+      border-radius: 0 0 0.5rem 0.5rem;
+      background: var(--card-bg);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .card-body > .d-flex > input.form-control {
+      border: none;
+      border-bottom: 1px solid #ddd;
+      border-radius: 0;
+    }
+    .card-body > .d-flex > input.form-control:focus {
+      box-shadow: none;
+      border-bottom-color: var(--primary-color);
+    }
+    .option-list .form-control {
+      border: none;
+      border-bottom: 1px dashed #ccc;
+      border-radius: 0;
+    }
+    .option-list .form-control:focus {
+      box-shadow: none;
+      border-bottom-color: var(--primary-color);
+    }
+    .icon-btn { color: #6c757d; cursor: pointer; }
+    .icon-btn:hover { color: var(--primary-color); }
+    .add-option {
+      color: var(--primary-color);
+      cursor: pointer;
+    }
+    .add-option:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="container py-4">
+    <!-- フォームヘッダー -->
+    <div class="form-header">
+      <h4 class="mb-1">無題のフォーム</h4>
+      <small>フォームの説明</small>
+    </div>
+
+    <!-- 質問カード -->
+    <div class="card card-form mb-5">
+      <div class="card-body">
+        <!-- 質問タイトル＋ツールバー -->
+        <div class="d-flex align-items-start mb-4">
+          <div class="flex-grow-1 me-3">
+            <input type="text" class="form-control form-control-lg"
+                   placeholder="無題の質問" aria-label="質問タイトル"/>
+          </div>
+          <div class="d-flex flex-column align-items-center me-3">
+            <i class="bi bi-arrows-move icon-btn mb-2" title="移動"></i>
+            <i class="bi bi-image icon-btn" title="画像を追加"></i>
+          </div>
+          <div>
+            <div class="input-group">
+              <select class="form-select" aria-label="質問の種類">
+                <option selected>ラジオボタン</option>
+                <option>チェックボックス</option>
+                <option>ドロップダウン</option>
+                <option>テキスト（短文）</option>
+              </select>
+              <span class="input-group-text"><i class="bi bi-chevron-down"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 選択肢リスト -->
+        <div class="option-list">
+          <div class="d-flex align-items-center mb-2">
+            <i class="bi bi-circle me-2 text-muted"></i>
+            <input type="text" class="form-control" placeholder="選択肢 1" aria-label="選択肢1"/>
+            <i class="bi bi-x-lg ms-2 icon-btn" title="削除"></i>
+          </div>
+          <div class="d-flex align-items-center mb-2">
+            <i class="bi bi-circle me-2 text-muted"></i>
+            <input type="text" class="form-control" placeholder="選択肢 2" aria-label="選択肢2"/>
+            <i class="bi bi-x-lg ms-2 icon-btn" title="削除"></i>
+          </div>
+          <div class="d-flex align-items-center mb-2">
+            <i class="bi bi-circle me-2 text-muted"></i>
+            <input type="text" class="form-control" placeholder="選択肢 3" aria-label="選択肢3"/>
+            <i class="bi bi-x-lg ms-2 icon-btn" title="削除"></i>
+          </div>
+        </div>
+
+        <!-- 選択肢追加リンク -->
+        <div class="add-option mb-4">
+          <i class="bi bi-plus-lg me-1"></i>選択肢を追加 または 「その他」を追加
+        </div>
+
+        <!-- アクションバー -->
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <i class="bi bi-files icon-btn me-3" title="複製"></i>
+            <i class="bi bi-trash icon-btn" title="削除"></i>
+          </div>
+          <div class="d-flex align-items-center">
+            <div class="form-check form-switch me-3">
+              <input class="form-check-input" type="checkbox" id="requiredSwitch"/>
+              <label class="form-check-label ms-1" for="requiredSwitch">必須</label>
+            </div>
+            <i class="bi bi-three-dots-vertical icon-btn" title="その他オプション"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS（必要なら） -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
